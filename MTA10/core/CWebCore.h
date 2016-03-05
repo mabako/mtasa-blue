@@ -128,6 +128,8 @@ public:
     // CefSchemeHandlerFactory methods
     virtual CefRefPtr<CefResourceHandler> Create ( CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& scheme_name, CefRefPtr<CefRequest> request ) override;
 
+    virtual void OnBeforeCommandLineProcessing ( const CefString& process_type, CefRefPtr<CefCommandLine> command_line ) override;
+
     IMPLEMENT_REFCOUNTING(CCefApp);
 };
 

@@ -86,6 +86,16 @@ public:
         frame->GetBrowser ()->SendProcessMessage ( PID_BROWSER, message );
     }
 
+    virtual void OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) override
+    {
+        // Process type is empty if this is a browser window.
+        if (process_type.empty())
+        {
+            // When submitting HTML forms and reloading the current page via CWebView::Refresh, this would prompt for "Confirm form resubmission".
+            command_line->AppendSwitch("disable-prompt-on-repost");
+        }
+    }
+
 public:
     IMPLEMENT_REFCOUNTING(CCefApp);
 
